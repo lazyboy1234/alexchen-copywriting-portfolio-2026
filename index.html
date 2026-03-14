@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen | The Copywrights Collective</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #c9a227;
+            --light: #f5f5f5;
+            --gray: #666;
+            --success: #2e7d32;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: #fff;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--accent);
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            color: #fff;
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        section {
+            padding: 6rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .skill-tag {
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .case-studies {
+            background: var(--light);
+        }
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .case-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .case-card:hover {
+            transform: translateY(-5px);
+        }
+        .case-content {
+            padding: 2rem;
+        }
+        .case-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .case-content .client {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .case-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        .metrics {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .metric {
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .metric .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        .metric .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .testimonials {
+            background: var(--primary);
+            color: #fff;
+        }
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .testimonial {
+            padding: 2rem;
+        }
+        .testimonial p {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .client-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .client-info .client-details h4 {
+            margin-bottom: 0.2rem;
+        }
+        .client-info .client-details span {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        .contact {
+            text-align: center;
+        }
+        .contact .btn {
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+        footer {
+            background: var(--primary);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--accent);
+        }
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">The Copywrights<span>Collective</span></div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#cases">Case Studies</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Psychology‑Driven Copy That Converts</h1>
+            <p>We combine the timeless principles of copywriting legends (Ogilvy, Halbert, Schwartz) with modern psychological triggers to double your conversions—without guesswork or fluff.</p>
+            <a href="#contact" class="btn">Get a Free Copy Audit</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Who We Are</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Alex Chen, Lead Copywright</h3>
+                    <p>I lost a $20k client because my copy wasn't converting. That expensive lesson forced me to study the greats—Ogilvy, Halbert, Schwartz—and build a framework that actually works.</p>
+                    <p>Now I help businesses like yours double their conversions using proven psychological triggers. No fluff, no guesswork. Just results.</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">Direct Response</span>
+                        <span class="skill-tag">Psychological Triggers</span>
+                        <span class="skill-tag">AIDA & PAS Formulas</span>
+                        <span class="skill-tag">Market Sophistication</span>
+                        <span class="skill-tag">Conversion Optimization</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Alex Chen" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="case-content">
+                        <h3>Website Copy Audits</h3>
+                        <p>We analyze your current copy, identify missing psychological triggers, and provide a clear roadmap for improvement.</p>
+                        <div class="metric">
+                            <span class="number">$497</span>
+                            <span class="label">One‑time audit</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-content">
+                        <h3>Full‑Service Copywriting</h3>
+                        <p>From headlines to CTAs, we rewrite your entire sales funnel using proven formulas and psychological triggers.</p>
+                        <div class="metric">
+                            <span class="number">$2k–$10k</span>
+                            <span class="label">Project‑based</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-content">
+                        <h3>Ongoing Optimization</h3>
+                        <p>Monthly A/B testing, copy tweaks, and conversion tracking to continuously improve results.</p>
+                        <div class="metric">
+                            <span class="number">$1,500</span>
+                            <span class="label">Monthly retainer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="case-studies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Case Studies</h2>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="case-content">
+                        <span class="client">E‑commerce Brand</span>
+                        <h3>Product Page Overhaul</h3>
+                        <p>Rewrote product descriptions, checkout page, and follow‑up emails using scarcity and social proof.</p>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span class="number">183%</span>
+                                <span class="label">Conversion Lift</span>
+                            </div>
+                            <div class="metric">
+                                <span class="number">2×</span>
+                                <span class="label">Revenue in 60 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-content">
+                        <span class="client">SaaS Startup</span>
+                        <h3>Onboarding Email Sequence</h3>
+                        <p>Redesigned onboarding emails, pricing page, and landing page using the "Unique Mechanism" trigger.</p>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span class="number">140%</span>
+                                <span class="label">Trial Conversion Lift</span>
+                            </div>
+                            <div class="metric">
+                                <span class="number">40%</span>
+                                <span class="label">Lower CAC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-content">
+                        <span class="client">Local Restaurant</span>
+                        <h3>Menu & Email Redesign</h3>
+                        <p>Rewrote menu descriptions, email subject lines, and social posts using curiosity and authority.</p>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span class="number">3×</span>
+                                <span class="label">Reservations</span>
+                            </div>
+                            <div class="metric">
+                                <span class="number">183%</span>
+                                <span class="label">Email Open Lift</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">What Clients Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"Alex's rewrite increased our conversions by 140% in a month. Worth every penny. He truly understands the psychology behind a buying decision."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K.">
+                        <div class="client-details">
+                            <h4>Sarah K.</h4>
+                            <span>Founder, SaaS Startup</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"We were skeptical, but the results speak for themselves. Our revenue doubled in 60 days. Alex's copy is worth its weight in gold."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mike R.">
+                        <div class="client-details">
+                            <h4>Mike R.</h4>
+                            <span>Owner, E‑commerce Brand</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get a Free Copy Audit</h2>
+            </div>
+            <p>We'll review your current copy, identify the biggest conversion leaks, and show you exactly how to fix them—no strings attached.</p>
+            <a href="mailto:alex@moneymaker.com" class="btn">Book Your Free Audit</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 The Copywrights Collective. All rights reserved.</p>
+            <p>Inspired by <a href="#">Ogilvy</a>, <a href="#">Halbert</a>, <a href="#">Schwartz</a>. Driven by results.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
